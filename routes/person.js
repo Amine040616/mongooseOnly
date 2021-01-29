@@ -21,6 +21,16 @@ router.post('/addPerson', (req, res)=>{
     .then(el=>res.send(el))
     .catch(err=>console.log('erreur : ',err))
 })
+//@ path : localhost:5000/person/updatePerson
+//description : update one person
+//public/private
+router.post('/updatePerson/:_id', (req, res)=>{
+    const {_id}=req.params
+    const {name, age, faveriteFoods}=req.body;
+    Person.findOneAndUpdate({_id}, {$set:{name, age, faveriteFoods}})
+    .then(el=>res.send(el))
+    .catch(err=>console.log('erreur : ',err))
+})
 //@ path : localhost:5000/person/gettingAll
 //description : getting all person
 //public/private
